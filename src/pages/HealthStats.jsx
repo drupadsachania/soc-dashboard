@@ -7,15 +7,15 @@ import { Activity } from 'lucide-react';
 const HealthStats = () => {
     return (
         <Layout title="System Health & Stats">
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
-                    <Activity className="text-[#00f0ff]" />
+            <div className="page-intro">
+                <h2 className="page-heading">
+                    <Activity className="text-[#00f0ff]" style={{ color: 'var(--accent-cyan)' }} />
                     Infrastructure Status
                 </h2>
-                <p className="text-[#94a3b8]">Real-time monitoring of local ML models and orchestration services.</p>
+                <p className="page-subheading">Real-time monitoring of local ML models and orchestration services.</p>
             </div>
 
-            <div className="grid grid-cols-1 gap-8">
+            <div className="grid-cols-1">
                 <ServiceStatus />
                 <LLMStats />
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../common/Card';
 import Badge from '../common/Badge';
-import { AlertTriangle, Shield, Globe, Terminal } from 'lucide-react';
+import { AlertTriangle, Shield, Globe, Terminal, User } from 'lucide-react';
 
 const alerts = [
     { id: 1, title: 'Suspicious PowerShell Execution', source: 'EDR', severity: 'danger', time: '2 mins ago', icon: Terminal },
@@ -11,24 +11,22 @@ const alerts = [
     { id: 5, title: 'New Admin User Created', source: 'Audit', severity: 'warning', time: '3 hours ago', icon: User },
 ];
 
-import { User } from 'lucide-react';
-
 const AlertList = () => {
     return (
-        <Card title="Recent Alerts" action={<button className="text-xs text-[#00f0ff] hover:underline">View All</button>}>
-            <div className="space-y-4">
+        <Card title="Recent Alerts" action={<button className="link-action">View All</button>}>
+            <div className="alert-list">
                 {alerts.map((alert) => (
-                    <div key={alert.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-[rgba(255,255,255,0.03)] transition-colors group cursor-pointer">
-                        <div className="flex items-center gap-4">
-                            <div className={`p-2 rounded-lg bg-[rgba(255,255,255,0.05)] group-hover:bg-[rgba(255,255,255,0.1)] transition-colors`}>
-                                <alert.icon size={18} className="text-[#94a3b8] group-hover:text-white" />
+                    <div key={alert.id} className="alert-item group">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                            <div className="alert-icon-box">
+                                <alert.icon size={18} />
                             </div>
                             <div>
-                                <h4 className="text-sm font-medium text-white group-hover:text-[#00f0ff] transition-colors">{alert.title}</h4>
-                                <div className="flex items-center gap-2 mt-1">
-                                    <span className="text-xs text-[#64748b]">{alert.source}</span>
-                                    <span className="text-xs text-[#64748b]">•</span>
-                                    <span className="text-xs text-[#64748b]">{alert.time}</span>
+                                <h4 className="alert-title">{alert.title}</h4>
+                                <div className="alert-meta">
+                                    <span>{alert.source}</span>
+                                    <span>•</span>
+                                    <span>{alert.time}</span>
                                 </div>
                             </div>
                         </div>

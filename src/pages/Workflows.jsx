@@ -7,19 +7,19 @@ import { GitBranch } from 'lucide-react';
 const Workflows = () => {
     return (
         <Layout title="Workflows & Export">
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
-                    <GitBranch className="text-[#00f0ff]" />
+            <div className="page-intro">
+                <h2 className="page-heading">
+                    <GitBranch className="text-[#00f0ff]" style={{ color: 'var(--accent-cyan)' }} />
                     Orchestration & Reporting
                 </h2>
-                <p className="text-[#94a3b8]">Manage n8n workflows and generate audit-ready reports.</p>
+                <p className="page-subheading">Manage n8n workflows and generate audit-ready reports.</p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-[600px]">
-                <div className="lg:col-span-2 h-full">
+            <div className="lg-grid-cols-3" style={{ height: '600px' }}>
+                <div className="col-span-2" style={{ height: '100%' }}>
                     <WorkflowCanvas />
                 </div>
-                <div className="lg:col-span-1 h-full">
+                <div style={{ height: '100%' }}>
                     <DocumentGenerator />
                 </div>
             </div>

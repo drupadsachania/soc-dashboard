@@ -6,15 +6,15 @@ import { FileText } from 'lucide-react';
 const AuditLogs = () => {
     return (
         <Layout title="Audit Logs">
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
-                    <FileText className="text-[#00f0ff]" />
+            <div className="page-intro">
+                <h2 className="page-heading">
+                    <FileText className="text-[#00f0ff]" style={{ color: 'var(--accent-cyan)' }} />
                     Compliance & Audit
                 </h2>
-                <p className="text-[#94a3b8]">Immutable record of all system actions and analyst decisions.</p>
+                <p className="page-subheading">Immutable record of all system actions and analyst decisions.</p>
             </div>
 
-            <div className="h-[600px]">
+            <div style={{ minHeight: '600px' }}>
                 <AuditTable />
             </div>
         </Layout>

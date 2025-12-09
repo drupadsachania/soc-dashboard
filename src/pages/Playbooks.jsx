@@ -6,18 +6,18 @@ import { Zap } from 'lucide-react';
 const Playbooks = () => {
     return (
         <Layout title="Playbook Quick Rules">
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
-                    <Zap className="text-[#00f0ff]" />
+            <div className="page-intro">
+                <h2 className="page-heading">
+                    <Zap className="text-[#00f0ff]" style={{ color: 'var(--accent-cyan)' }} />
                     Automation Logic
                 </h2>
-                <p className="text-[#94a3b8]">Define how the system responds to alerts based on risk scores and enrichment data.</p>
+                <p className="page-subheading">Define how the system responds to alerts based on risk scores and enrichment data.</p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid-cols-2">
                 {/* High Risk Column */}
-                <div className="space-y-6">
-                    <h3 className="text-xl font-semibold text-[#ff2a6d] border-b border-[rgba(255,42,109,0.2)] pb-2 mb-4">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--accent-red)', borderBottom: '1px solid rgba(255,42,109,0.2)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>
                         High Risk (Requires Approval)
                     </h3>
 
@@ -52,8 +52,8 @@ const Playbooks = () => {
                 </div>
 
                 {/* Low Risk Column */}
-                <div className="space-y-6">
-                    <h3 className="text-xl font-semibold text-[#05d5aa] border-b border-[rgba(5,213,170,0.2)] pb-2 mb-4">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--accent-green)', borderBottom: '1px solid rgba(5,213,170,0.2)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>
                         Low Risk (Automated)
                     </h3>
 

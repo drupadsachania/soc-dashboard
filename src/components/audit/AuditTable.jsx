@@ -15,46 +15,47 @@ const logs = [
 const AuditTable = () => {
     return (
         <Card title="System Audit Logs" className="h-full">
-            <div className="flex items-center justify-between mb-6">
-                <div className="relative">
-                    <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748b]" />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
+                <div style={{ position: 'relative' }}>
+                    <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
                     <input
                         type="text"
                         placeholder="Search logs..."
-                        className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.1)] rounded-lg pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-[#00f0ff] w-64"
+                        className="input-glass"
+                        style={{ padding: '0.5rem 1rem 0.5rem 2.5rem', borderRadius: '8px', width: '250px' }}
                     />
                 </div>
-                <div className="flex gap-3">
-                    <button className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)] text-sm text-white transition-colors">
+                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                    <button style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 0.75rem', borderRadius: '8px', background: 'rgba(255,255,255,0.05)', color: 'white', border: 'none', cursor: 'pointer' }}>
                         <Filter size={16} />
                         Filter
                     </button>
-                    <button className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)] text-sm text-white transition-colors">
+                    <button style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 0.75rem', borderRadius: '8px', background: 'rgba(255,255,255,0.05)', color: 'white', border: 'none', cursor: 'pointer' }}>
                         <Download size={16} />
                         Export CSV
                     </button>
                 </div>
             </div>
 
-            <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
+            <div className="data-table-container">
+                <table className="data-table">
                     <thead>
-                        <tr className="border-b border-[rgba(255,255,255,0.05)]">
-                            <th className="py-3 px-4 text-xs font-medium text-[#94a3b8] uppercase tracking-wider">Timestamp</th>
-                            <th className="py-3 px-4 text-xs font-medium text-[#94a3b8] uppercase tracking-wider">User / Service</th>
-                            <th className="py-3 px-4 text-xs font-medium text-[#94a3b8] uppercase tracking-wider">Action</th>
-                            <th className="py-3 px-4 text-xs font-medium text-[#94a3b8] uppercase tracking-wider">Target</th>
-                            <th className="py-3 px-4 text-xs font-medium text-[#94a3b8] uppercase tracking-wider">Status</th>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>User / Service</th>
+                            <th>Action</th>
+                            <th>Target</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-[rgba(255,255,255,0.05)]">
+                    <tbody>
                         {logs.map((log) => (
-                            <tr key={log.id} className="hover:bg-[rgba(255,255,255,0.02)] transition-colors">
-                                <td className="py-3 px-4 text-sm text-[#64748b] font-mono">{log.timestamp}</td>
-                                <td className="py-3 px-4 text-sm text-white font-medium">{log.user}</td>
-                                <td className="py-3 px-4 text-sm text-white">{log.action}</td>
-                                <td className="py-3 px-4 text-sm text-[#94a3b8]">{log.target}</td>
-                                <td className="py-3 px-4">
+                            <tr key={log.id}>
+                                <td className="font-mono">{log.timestamp}</td>
+                                <td style={{ fontWeight: 500, color: 'white' }}>{log.user}</td>
+                                <td style={{ color: 'white' }}>{log.action}</td>
+                                <td>{log.target}</td>
+                                <td>
                                     <Badge variant={log.status === 'success' ? 'success' : 'danger'}>
                                         {log.status.toUpperCase()}
                                     </Badge>

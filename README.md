@@ -1,237 +1,231 @@
+
 # SOC Dashboard — Centralized Security Operations Console
 
-**SOC Dashboard** is a modern, unified **Security Operations Center (SOC) interface** built with **React & Vite**.  
-It combines real-time alert monitoring, enrichment, history analysis, documentation, and playbooks — all from a single console designed for SOC analysts.
+SOC Dashboard is a **modern, frontend‑first Security Operations Center (SOC) console** built with **React and Vite**.  
+It is designed as a **single, unified workspace** where dashboards, investigations, enrichment context, playbooks, and documentation coexist — so analysts never need to context‑switch or hunt for information.
 
-Unlike fragmented tools, this project puts everything an analyst needs in one place:  
-📊 Dashboards • 🧠 Intelligence • 📚 Documentation • ⚙️ Automation
+This project focuses on **analyst experience, clarity, and extensibility**, while remaining backend‑agnostic and integration‑ready.
 
 ---
 
 ## 🚀 Why This Project Exists
 
-Security teams face **alert overload**, fragmented insights, and scattered tooling. Analysts end up shifting between dashboards, SIEM tools, threat intel portals, and internal docs — which hurts productivity and increases response time.
+Security operations teams deal with:
+- Alert fatigue
+- Fragmented tooling
+- Context spread across SIEMs, threat intel portals, and internal wikis
 
-**SOC Dashboard solves this by:**
-- Centralizing views (alerts, trends, context)
-- Embedding documentation where decisions matter
-- Enabling enrichment + similarity scoring
-- Supporting human-in-loop automation decisions
+This results in slower investigations and higher risk of human error.
 
-This project is designed to **assist analysts** — not replace them.
+**SOC Dashboard addresses this by:**
+- Centralizing information into one interface
+- Embedding documentation directly into workflows
+- Presenting enrichment and historical context alongside alerts
+- Supporting human‑in‑the‑loop decision making
 
----
-
-## 🧠 Key Features
-
-### 📌 Unified Console
-- Sidebar navigation to key sections (Overview, Alerts, Enrichment, History, Playbooks, Documentation, Settings)
-- Topbar with global search and notifications
-
-### 🛡️ SOC-Focused Views
-- Alerts card with severity indicators
-- Similarity scoring against historical incidents
-- Enrichment details (e.g., threat intel and indicators)
-- Expandable context panels for drill-downs
-
-### 📚 Inline Documentation
-Documentation is embedded within workflows — analysts don’t need to open separate wiki pages.
-
-### 🧠 ML & Intelligence-Assisted
-- Local embeddings + classifier for historical similarity indexing
-- Integrations with enrichment APIs and internal telemetry
-
-### ⚙️ Human-in-Loop Automation
-- Suggested playbook steps (recommended actions)
-- Human approval gates before containment
+> This project is designed to **assist security analysts, not replace them**.
 
 ---
 
-## 🏛️ Architecture Overview
+## ✨ Key Features
 
-```
+### 🧭 Centralized Console
+- Single navigation surface for dashboards, alerts, playbooks, and documentation
+- No external wiki or tool hopping required
 
-```
-                            +------------------+
- Alerts/Webhooks  --------> |   n8n Orchestrator |
-                            +------------------+
-                                     |
-                                     v
-```
+### 📊 SOC‑Focused Views
+- Alert cards with severity and metadata
+- Investigation‑friendly layouts
+- Expandable context panels for enrichment and history
 
-+-------------+      +------------------------------+
-| Web UI (SPA)| <--> | FastAPI Orchestrator Service |
-|  React + Vite|     +------------------------------+
-+-------------+                |
-|                      |
-v                      v
-+-------------------+   +------------------+
-| FAISS Index + DB  |   | ML Models        |
-| (historical       |   | Embeddings +     |
-|  alerts metadata) |   | Classifier       |
-+-------------------+   +------------------+
+### 📚 Embedded Documentation
+- Documentation lives next to data
+- Explanations, playbooks, and guidance appear where decisions are made
 
-````
+### 🧠 Intelligence‑Ready Design
+- Designed to support enrichment, similarity scoring, and ML‑assisted insights
+- Clear visual hierarchy for dense technical data
 
-- **React + Vite** — Fast, modular frontend with modern developer experience.
-- **n8n** — Orchestration (webhooks, enrichment APIs, notifications).
-- **FastAPI** — Serves ML inference (similarity + recommendations).
-- **FAISS + SQLite** — Efficient historical alert search index.
-- **Local ML** — Lightweight embedding model + classifier optimized for CPU.
-
-This stack emphasizes **performance, modularity, and analyst empowerment**.
+### ⚙️ Automation‑Friendly (Human‑in‑Loop)
+- UI patterns designed for action recommendations
+- Explicit approval gates before any response or containment action
 
 ---
 
-## 📦 Getting Started
+## 🏗️ Architecture Overview
 
-### Prerequisites
+SOC Dashboard is designed as a **frontend‑first, integration‑ready SOC console**.
 
-Make sure you have the following installed:
-- **Node.js v16+**
-- **NPM or Yarn**
-- (Optional) **Python 3.9+** for model training & indexing
+The project emphasizes **UX, workflow clarity, and information architecture**, while remaining flexible enough to integrate with orchestration, enrichment, and analytics backends.
 
----
+### High‑Level Architecture
 
-### 🧑‍💻 Frontend Setup
-
-Clone the repo:
-```sh
-git clone https://github.com/drupadsachania/soc-dashboard.git
-cd soc-dashboard
-````
-
-Install dependencies:
-
-```sh
-npm install
 ```
-
-Start the frontend:
-
-```sh
-npm run dev
-```
-
-Navigate to `http://localhost:5173`.
-
----
-
-### ⚙️ Back-end & Orchestrator
-
-If using the optional FastAPI orchestrator:
-
-1. Create Python virtual environment
-2. Install requirements
-3. Run API server
-
-```sh
-python3 -m venv env
-source env/bin/activate
-pip install -r requirements.txt
-uvicorn fastapi_orchestrator:app --reload --port 8000
+┌─────────────────────────────────────────────┐
+│              SOC Dashboard UI               │
+│             (React + Vite SPA)               │
+│                                             │
+│  • Overview & Metrics                        │
+│  • Alerts & Investigation Views              │
+│  • Context Panels & Enrichment Display       │
+│  • Embedded Documentation & Playbooks        │
+│                                             │
+└─────────────────────────────────────────────┘
+                     │
+                     │ API / Webhook / Adapter Layer
+                     │ (pluggable, backend‑agnostic)
+                     ▼
+┌─────────────────────────────────────────────┐
+│        External & Internal Systems           │
+│                                             │
+│  • SIEM / EDR / XDR platforms                │
+│  • Threat Intelligence Providers             │
+│  • Workflow Orchestrators (e.g., n8n)        │
+│  • Analytics / ML services (optional)        │
+│                                             │
+└─────────────────────────────────────────────┘
 ```
 
 ---
 
-## 📁 Example Project Structure
+### Design Philosophy
+
+- **Frontend as the control plane**  
+  The UI is the analyst’s primary workspace, not a thin visualization layer.
+
+- **Backend‑agnostic by design**  
+  The project does not assume a specific SIEM, EDR, or automation engine.
+
+- **Composable integrations**  
+  Data can be ingested via APIs, webhooks, or adapters without changing UI logic.
+
+- **Human‑centric workflows**  
+  Automation and intelligence assist analysts — final decisions remain human‑driven.
+
+---
+
+## 🔮 Future Integrations (Planned)
+
+The architecture supports optional integrations such as:
+- Workflow orchestration (e.g., n8n)
+- Threat intelligence enrichment pipelines
+- Historical alert similarity analysis
+- ML‑assisted alert classification
+- Human‑in‑the‑loop response automation
+
+These capabilities are intentionally decoupled to preserve flexibility and maintainability.
+
+---
+
+## 🧑‍💻 Tech Stack
+
+- **Frontend:** React, Vite
+- **Styling:** Token‑driven, component‑based design (derived from Figma)
+- **State & Logic:** Modular, composable components
+- **Integrations:** API / webhook‑based (pluggable)
+
+---
+
+## 📁 Project Structure
 
 ```
 soc-dashboard/
 ├── public/
 ├── src/
-│   ├── components/
-│   ├── layout/
-│   ├── pages/
-│   ├── hooks/
-│   ├── styles/
+│   ├── components/      # Reusable UI components
+│   ├── layout/          # App shell (sidebar, topbar)
+│   ├── pages/           # Route‑level views
+│   ├── hooks/           # Shared logic
+│   ├── styles/          # Design tokens & global styles
 │   └── App.tsx
-├── design-tokens.md
-├── component-map.md
-├── n8n/
-├── docs/
-├── .gitignore
+├── design-tokens.md     # Design system contract
+├── component-map.md     # Figma → React mapping
+├── docs/                # Architecture & usage docs
 ├── package.json
 └── README.md
 ```
 
-You’ll find:
+---
 
-* **src/components/** — Reusable UI components
-* **src/pages/** — Routes and page containers
-* **layout/** — App shell (sidebar, topbar, responsive layout)
+## 🎨 Design & UX Principles
+
+- Dark‑mode first
+- Clear visual hierarchy for severity and risk
+- Calm, professional, analyst‑friendly UI
+- Token‑driven spacing, typography, and colors
+- Components designed to map cleanly from Figma to React
+
+This project intentionally avoids visual noise and prioritizes **clarity and decision support**.
 
 ---
 
-## 📊 Design & UX Principles
+## 🚀 Getting Started
 
-This project follows:
+### Prerequisites
+- Node.js 16+
+- npm or yarn
 
-* **Dark-mode first design**
-* **Component-driven architecture**
-* **Embedded documentation** (no context switching)
-* **Clear visual hierarchy** for critical alerts and decisions
-* **Reusable tokens & spacing system** from Figma guidelines
+### Installation
 
-All UI matches specifications created from the project’s Figma design.
-
----
-
-## 🧠 Machine Learning
-
-The project includes:
-
-* **Local embeddings model** (lightweight, CPU-friendly)
-* **Similarity scoring against historical alerts**
-* **Classifier for “known vs new” recommendations**
-
-Model training and indexing scripts are included under `/scripts`.
-
----
-
-## 📈 Why It Matters
-
-This tool isn’t just a dashboard — it’s an **analyst’s command center** that:
-
-* Reduces cognitive load
-* Provides contextual insights
-* Speeds investigations
-* Keeps analysts in control
-
-Every action suggestion requires explicit analyst approval.
-
----
-
-## 🛠 Contributions
-
-Contributions are welcome!
-Please open issues or pull requests to suggest features, fix bugs, or improve documentation.
-
----
-
-## 📝 License
-
-This project is open source and licensed under the **MIT License**.
-
----
-
-## 🔗 Related Links
-
-* **Figma Design Guidelines**
-* **Project Architecture Documentation**
-* **Deployment & CI/CD Templates**
-
+```bash
+git clone https://github.com/drupadsachania/soc-dashboard.git
+cd soc-dashboard
+npm install
 ```
 
----
+### Run Locally
 
-### 📌 Notes For Best Results
-- Replace the 🔗 *Related Links* section with actual links (Figma, architecture docs, deployment scripts).
-- If you prefer a shorter intro version, I can generate that too.
-
----
-
-Would you like the README in **HTML format**, a **badges / metrics section** (e.g., build status, dependencies), or a **Quick-Start video embed section**?
-::contentReference[oaicite:0]{index=0}
+```bash
+npm run dev
 ```
+
+Open:  
+`http://localhost:5173`
+
+---
+
+## 🧪 Development Notes
+
+- This repository currently focuses on **frontend architecture and UX**
+- Backend services are intentionally decoupled
+- Mock data and adapters can be used during development
+- Designed to integrate cleanly with existing SOC tooling
+
+---
+
+## 🧩 Who This Is For
+
+- SOC analysts
+- Security engineers
+- Platform engineers
+- Anyone exploring **modern SOC UX design**
+- Portfolio / learning projects focused on security tooling
+
+---
+
+## 🤝 Contributions
+
+Contributions, feedback, and ideas are welcome.
+
+If you’d like to:
+- Improve UX patterns
+- Add integrations
+- Refine documentation
+- Extend the design system
+
+Please open an issue or pull request.
+
+---
+
+## 📜 License
+
+MIT License
+
+---
+
+## 🧭 Closing Note
+
+SOC Dashboard is not just a UI — it is an exploration of how **security tooling should feel**:
+centralized, calm, context‑aware, and human‑first.
+
+

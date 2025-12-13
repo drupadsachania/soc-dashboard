@@ -1,3 +1,7 @@
+import React from 'react';
+import Sidebar from './Sidebar';
+import Header from './Header';
+
 const Layout = ({ children, title = "Dashboard" }) => {
     return (
         <div className="app-layout">

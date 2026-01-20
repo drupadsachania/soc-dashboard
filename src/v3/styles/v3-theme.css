@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+:root {
+    /* VANGUARD OS v3 Canonical Palette */
+    --vanguard-obsidian: #0D1117;
+    --vanguard-critical: #FF007A;
+    --vanguard-cyan: #00F0FF;
+    --vanguard-amber: #FFB800;
+    --vanguard-surface: #161B22;
+    --vanguard-surface-light: #21262D;
+    --vanguard-border: rgba(0, 240, 255, 0.1);
+    --vanguard-border-strong: rgba(0, 240, 255, 0.2);
+
+    /* Semantic Mappings */
+    --background: var(--vanguard-obsidian);
+    --foreground: #F0F6FC;
+    --primary: var(--vanguard-cyan);
+    --secondary: var(--vanguard-surface);
+    --accent: var(--vanguard-critical);
+
+    /* Fonts */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* 
+  Bypassing @theme and @layer due to build environment crash. 
+  Using standard CSS for these utilities.
+*/
+
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--vanguard-obsidian);
+    color: #F0F6FC;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-sans);
+}
+
+code,
+pre,
+.font-forensic {
+    font-family: var(--font-mono) !important;
+}
+
+.glow-cyan {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+}
+
+.glow-pink {
+    box-shadow: 0 0 15px rgba(255, 0, 122, 0.15);
+}
+
+.scanline-depth {
+    position: relative;
+    overflow: hidden;
+}
+
+.scanline-depth::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.05) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes pulse-vanguard {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+.animate-vanguard-pulse {
+    animation: pulse-vanguard 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Utility Class Substitutions */
+.bg-vanguard-obsidian {
+    background-color: var(--vanguard-obsidian);
+}
+
+.bg-vanguard-surface {
+    background-color: var(--vanguard-surface);
+}
+
+.bg-vanguard-surface-light {
+    background-color: var(--vanguard-surface-light);
+}
+
+.text-vanguard-cyan {
+    color: var(--vanguard-cyan);
+}
+
+.text-vanguard-critical {
+    color: var(--vanguard-critical);
+}
+
+.text-vanguard-amber {
+    color: var(--vanguard-amber);
+}
+
+.border-vanguard-border {
+    border-color: var(--vanguard-border);
+}
+
+.border-vanguard-cyan {
+    border-color: var(--vanguard-cyan);
+}
+
+.border-vanguard-critical {
+    border-color: var(--vanguard-critical);
+}
+
+.border-vanguard-amber {
+    border-color: var(--vanguard-amber);
+}

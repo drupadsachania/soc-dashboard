@@ -1,219 +1,175 @@
+# 🧭 Entropy — Epistemic AI Security System
 
-# SOC Dashboard — Centralized Security Operations Console
-
-SOC Dashboard is a **modern, frontend‑first Security Operations Center (SOC) console** built with **React and Vite**.  
-It is designed as a **single, unified workspace** where dashboards, investigations, enrichment context, playbooks, and documentation coexist — so analysts never need to context‑switch or hunt for information.
-
-This project focuses on **analyst experience, clarity, and extensibility**, while remaining backend‑agnostic and integration‑ready.
+*A centralized, uncertainty-aware SOC console for human-in-the-loop intelligence.*
 
 ---
 
-## 🚀 Why This Project Exists
+## 🔍 Overview
 
-Security operations teams deal with:
-- Alert fatigue
-- Fragmented tooling
-- Context spread across SIEMs, threat intel portals, and internal wikis
+SOC Dashboard has evolved from a frontend-first SOC console into a **decision-support platform for epistemically aware security automation**.
+It unifies dashboards, investigations, enrichment context, and AI-driven sense-making — while maintaining full analyst oversight and explainability.
 
-This results in slower investigations and higher risk of human error.
-
-**SOC Dashboard addresses this by:**
-- Centralizing information into one interface
-- Embedding documentation directly into workflows
-- Presenting enrichment and historical context alongside alerts
-- Supporting human‑in‑the‑loop decision making
-
-> This project is designed to **assist security analysts, not replace them**.
+The new architecture integrates **Large Language Models (LLMs)**, **Retrieval-Augmented Generation (RAG)**, and **agentic control loops** to ensure every recommendation is traceable, explainable, and uncertainty-aware.
+It’s not just a tool for monitoring — it’s a framework for *thinking clearly under pressure.*
 
 ---
 
-## ✨ Key Features
+## 🚀 Why This Exists
 
-### 🧭 Centralized Console
-- Single navigation surface for dashboards, alerts, playbooks, and documentation
-- No external wiki or tool hopping required
+Modern security operations face **epistemic failure under scale**:
 
-### 📊 SOC‑Focused Views
-- Alert cards with severity and metadata
-- Investigation‑friendly layouts
-- Expandable context panels for enrichment and history
+* Alerts multiply faster than they can be reasoned about
+* Analysts reuse past conclusions as facts
+* AI models generate confident but unverified narratives
+* Systems reward closure over correctness
 
-### 📚 Embedded Documentation
-- Documentation lives next to data
-- Explanations, playbooks, and guidance appear where decisions are made
+**SOC Dashboard: Epistemic Edition** is built to fix that — by exposing uncertainty instead of hiding it.
 
-### 🧠 Intelligence‑Ready Design
-- Designed to support enrichment, similarity scoring, and ML‑assisted insights
-- Clear visual hierarchy for dense technical data
-
-### ⚙️ Automation‑Friendly (Human‑in‑Loop)
-- UI patterns designed for action recommendations
-- Explicit approval gates before any response or containment action
+> “We’re not trying to be right faster.
+> We’re trying to stay honest longer.”
 
 ---
 
-## 🏗️ Architecture Overview
+## 🧩 Core Principles
 
-SOC Dashboard is designed as a **frontend‑first, integration‑ready SOC console**.
+| ❌ We Refuse To                       | ✅ We Insist On                                            |
+| ------------------------------------ | --------------------------------------------------------- |
+| Let LLMs decide                      | LLMs generate *hypotheses*, not truth                     |
+| Collapse uncertainty into confidence | Make uncertainty *observable and actionable*              |
+| Automate irreversible actions        | Require explicit human or agentic approval                |
+| Reward speed over honesty            | Reward traceability, explainability, and epistemic safety |
+| Hide reasoning behind dashboards     | Expose reasoning trails in the open                       |
 
-The project emphasizes **UX, workflow clarity, and information architecture**, while remaining flexible enough to integrate with orchestration, enrichment, and analytics backends.
+---
 
-### High‑Level Architecture
+## 🧠 Key Features
+
+### 🧭 Centralized, Uncertainty-Aware Console
+
+A single workspace that unifies alerts, enrichment, and epistemic reasoning:
+
+* Context panels that display **contradictions and missing evidence**
+* Real-time **hypothesis scoring** and **deferral tracking**
+* Embedded documentation and rationale visualization
+
+### 🔄 Agentic Decision Loops
+
+Implements a modern **OODA (Observe–Orient–Decide–Act)** pattern:
+
+* **Observe:** Collect telemetry from EDR, CTI, and SIEMs
+* **Orient:** LLM-generated hypotheses normalized via RAG
+* **Decide:** Specialized agents gate ACT / DEFER / ESCALATE
+* **Act:** Human-reviewed, auditable, and reversible actions
+
+### 🧠 RAG-Based Grounding
+
+All AI reasoning is context-anchored using retrieval-augmented generation:
+
+* Prevents hallucination through grounding and evidence scoring
+* Introduces *Epistemic Uncertainty Index (EUI)* for every LLM output
+
+### 📊 Observability by Design
+
+Every model output, agent decision, and uncertainty signal is recorded:
+
+* **Raw → Normalized → Scored → Gated → Acted** chain
+* Structured observability for AI behavior and analyst review
+
+### 🧩 Extensible Agent Framework
+
+Tower-specific agents (Threat Intel, Incident Response, Uncertainty Control) handle domain workflows independently but cooperate through a shared decision bus.
+
+---
+
+## ⚙️ Architecture Overview
+
+### High-Level Design
 
 ```
-┌─────────────────────────────────────────────┐
-│              SOC Dashboard UI               │
-│             (React + Vite SPA)               │
-│                                             │
-│  • Overview & Metrics                        │
-│  • Alerts & Investigation Views              │
-│  • Context Panels & Enrichment Display       │
-│  • Embedded Documentation & Playbooks        │
-│                                             │
-└─────────────────────────────────────────────┘
+ ┌──────────────────────────────────────────────┐
+ │                SOC Dashboard UI               │
+ │             (React + Vite SPA)                │
+ │----------------------------------------------│
+ │  • Alerts, Enrichment, and Rationale Panels   │
+ │  • Agent Decision Loop Visualization          │
+ │  • Human-in-Loop Approvals                    │
+ │  • Documentation Embedded in Context          │
+ └──────────────────────────────────────────────┘
                      │
-                     │ API / Webhook / Adapter Layer
-                     │ (pluggable, backend‑agnostic)
                      ▼
-┌─────────────────────────────────────────────┐
-│        External & Internal Systems           │
-│                                             │
-│  • SIEM / EDR / XDR platforms                │
-│  • Threat Intelligence Providers             │
-│  • Workflow Orchestrators (e.g., n8n)        │
-│  • Analytics / ML services (optional)        │
-│                                             │
-└─────────────────────────────────────────────┘
+ ┌──────────────────────────────────────────────┐
+ │     AI Decision Support & Agent Layer        │
+ │----------------------------------------------│
+ │  • LLM Hypothesis Engine (Ollama)            │
+ │  • Retrieval-Augmented Context (RAG)         │
+ │  • Uncertainty Quantification Module          │
+ │  • Domain Agents (Threat, CTI, IR)           │
+ │  • Deferral & Escalation Logic               │
+ └──────────────────────────────────────────────┘
+                     │
+                     ▼
+ ┌──────────────────────────────────────────────┐
+ │          Integrations & Data Sources         │
+ │----------------------------------------------│
+ │  • SIEM / EDR / XDR                         │
+ │  • Threat Intelligence APIs                  │
+ │  • Observability & Audit Pipelines           │
+ │  • Optional ML / Analytics Services          │
+ └──────────────────────────────────────────────┘
 ```
 
 ---
 
-### Design Philosophy
+## 🧪 Epistemic Metrics (in development)
 
-- **Frontend as the control plane**  
-  The UI is the analyst’s primary workspace, not a thin visualization layer.
-
-- **Backend‑agnostic by design**  
-  The project does not assume a specific SIEM, EDR, or automation engine.
-
-- **Composable integrations**  
-  Data can be ingested via APIs, webhooks, or adapters without changing UI logic.
-
-- **Human‑centric workflows**  
-  Automation and intelligence assist analysts — final decisions remain human‑driven.
+| Metric                                   | Purpose                                                        |
+| ---------------------------------------- | -------------------------------------------------------------- |
+| **EUI — Epistemic Uncertainty Index**    | Quantifies contradiction, dispersion, and evidence sufficiency |
+| **HSR — Hallucination Suppression Rate** | Measures false narrative mitigation                            |
+| **DR — Deferral Ratio**                  | Tracks valid “I don’t know” outcomes                           |
+| **ATI — Analyst Trust Index**            | Captures user trust and explainability quality                 |
 
 ---
 
-## 🔮 Future Integrations (Planned)
+## 🧰 Tech Stack
 
-The architecture supports optional integrations such as:
-- Workflow orchestration (e.g., n8n)
-- Threat intelligence enrichment pipelines
-- Historical alert similarity analysis
-- ML‑assisted alert classification
-- Human‑in‑the‑loop response automation
-
-These capabilities are intentionally decoupled to preserve flexibility and maintainability.
+**Frontend:** React + Vite
+**Agent Framework:** LangGraph / Python services
+**LLM Engine:** Ollama (local inference)
+**RAG Layer:** Vectorized context embeddings
+**Styling:** Token-driven design system (Figma → React sync)
+**Logging:** Structured observability with reasoning trails
 
 ---
 
-## 🧑‍💻 Tech Stack
+## 🧩 Roadmap
 
-- **Frontend:** React, Vite
-- **Styling:** Token‑driven, component‑based design (derived from Figma)
-- **State & Logic:** Modular, composable components
-- **Integrations:** API / webhook‑based (pluggable)
-
----
-
-## 📁 Project Structure
-
-```
-soc-dashboard/
-├── public/
-├── src/
-│   ├── components/      # Reusable UI components
-│   ├── layout/          # App shell (sidebar, topbar)
-│   ├── pages/           # Route‑level views
-│   ├── hooks/           # Shared logic
-│   ├── styles/          # Design tokens & global styles
-│   └── App.tsx
-├── design-tokens.md     # Design system contract
-├── component-map.md     # Figma → React mapping
-├── docs/                # Architecture & usage docs
-├── package.json
-└── README.md
-```
+**Phase 1 (Complete):** Control and Orientation correctness
+**Phase 2 (In Progress):** RAG integration and uncertainty scoring
+**Phase 3 (Planned):** Federated agent orchestration (FeRAG-style)
+**Phase 4 (Planned):** Quantitative epistemic evaluation metrics
 
 ---
 
-## 🎨 Design & UX Principles
+## 🧑‍💻 Who This Is For
 
-- Dark‑mode first
-- Clear visual hierarchy for severity and risk
-- Calm, professional, analyst‑friendly UI
-- Token‑driven spacing, typography, and colors
-- Components designed to map cleanly from Figma to React
-
-This project intentionally avoids visual noise and prioritizes **clarity and decision support**.
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 16+
-- npm or yarn
-
-### Installation
-
-```bash
-git clone https://github.com/drupadsachania/soc-dashboard.git
-cd soc-dashboard
-npm install
-```
-
-### Run Locally
-
-```bash
-npm run dev
-```
-
-Open:  
-`http://localhost:5173`
-
----
-
-## 🧪 Development Notes
-
-- This repository currently focuses on **frontend architecture and UX**
-- Backend services are intentionally decoupled
-- Mock data and adapters can be used during development
-- Designed to integrate cleanly with existing SOC tooling
-
----
-
-## 🧩 Who This Is For
-
-- SOC analysts
-- Security engineers
-- Platform engineers
-- Anyone exploring **modern SOC UX design**
-- Portfolio / learning projects focused on security tooling
+* SOC analysts seeking clarity under complexity
+* Security engineers designing human-first automation
+* Researchers exploring epistemic uncertainty and explainable AI
+* Anyone experimenting with **safe, grounded LLMs in security**
 
 ---
 
 ## 🤝 Contributions
 
-Contributions, feedback, and ideas are welcome.
+We welcome collaboration in:
 
-If you’d like to:
-- Improve UX patterns
-- Add integrations
-- Refine documentation
-- Extend the design system
+* RAG + vector search optimization
+* Agent orchestration and decision gating
+* Uncertainty quantification
+* UI visualization for epistemic metrics
 
-Please open an issue or pull request.
+> Pull requests that improve reasoning visibility or trust calibration are especially encouraged.
 
 ---
 
@@ -225,7 +181,8 @@ MIT License
 
 ## 🧭 Closing Note
 
-SOC Dashboard is not just a UI — it is an exploration of how **security tooling should feel**:
-centralized, calm, context‑aware, and human‑first.
+**SOC Dashboard** has evolved from a SOC console into a platform for **epistemic integrity** in AI-driven security.
+It doesn’t promise certainty — it promises **clarity, traceability, and humility** in the face of uncertainty.
 
-
+> *“The goal isn’t to eliminate doubt.
+> It’s to make doubt work for you.”*
